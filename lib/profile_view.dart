@@ -1,7 +1,9 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter/material.dart';
-import 'newComp.dart';
 
+import 'newComp.dart';
+import 'points_page.dart';
+import 'public_results_page.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key, required this.user}) : super(key: key);
@@ -24,9 +26,7 @@ class ProfileView extends StatelessWidget {
             height: height/10,
             child: ElevatedButton(
               onPressed: (){
-                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NewCompetition(user: user.name!)));           
+                Navigator.of(context, rootNavigator: true).pushNamed('/comp2');        
               }, 
               child: Text("Novo natjecanje")),
           ),
@@ -38,7 +38,8 @@ class ProfileView extends StatelessWidget {
               height: height/10,
               child: ElevatedButton(
               onPressed: (){
-            
+               Navigator.of(context, rootNavigator: true).pushNamed('/pointspage', arguments: {'exampleArgument': user.name});        
+
               }, 
               child: Text("Azuiraj bodove")),
             ),
@@ -50,7 +51,10 @@ class ProfileView extends StatelessWidget {
               height: height/10,
               child: ElevatedButton(
               onPressed: (){
-            
+                     //Navigator.of(context, rootNavigator: true).pushNamed('/publiccomp');
+                     Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Result_Page(user: user.name!,))); 
               }, 
               child: Text("Natjecanje")),
             ),
